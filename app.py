@@ -4,6 +4,7 @@ from flask_sqlalchemy import SQLAlchemy
 import psycopg2
 import pandas as pd
 import numpy as np
+
 app=Flask(__name__)
 
 conn = psycopg2.connect("host=ec2-34-196-238-94.compute-1.amazonaws.com dbname=d55jmibbqvabtk user=airlljzbdgskhs password=d95b6b5ed7f0ef331823ce1405c0ab5a0c516095545d78d3456bd527e794b0f6")
@@ -12,7 +13,7 @@ port = int(os.environ.get("PORT",5000))
 
 
 
-@app.route('/')
+@app.get('/')
 def pegar():
     try: 
         cursor = conn.cursor()
