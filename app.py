@@ -13,8 +13,8 @@ port = int(os.environ.get("PORT",5000))
 
 
 
-@app.get('/')
-def pegar():
+@app.route('/')
+def index():
     try: 
         cursor = conn.cursor()
         sql_query = """select * from gradeopcoes"""
