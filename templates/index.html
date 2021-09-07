@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" crossorigin="anonymous">
+    <title>teste</title>
+</head>
+<body>
+    <h1 class='h1 text-center'>{{tamanholistaticker}} opções encontradas </h1><hr>
+    <div class="row row-cols-1 row-cols-md-3 g-4">
+    {% for i in range(0, tamanholistaticker) %}
+   
+
+    
+    <div class="col">
+        <div class="card h-100 shadow p-3 mb-5 ">
+        <!----<img src="..." class="card-img-top" alt="..."-->
+        <div class="card-body ">
+            <h2 class="h2">Ativo - {{lista_nomeativo[i]}} </h2>
+            <hr>
+            <h5 class="card-title">Nome da Opção(ticker) - {{lista_ticker[i]}}</h5>
+            <p class="card-text display-6">Último Valor - {{lista_ultimo[i]}}</p>
+            <p class="card-text">Tipo - {{lista_tipo[i]}}</p>
+            <p class="card-text">Strike - {{lista_strike[i]}}</p>
+            <p class="card-text">A/I/OTM - {{lista_aiotm[i]}}</p>
+            <p class="card-text">Delta- {{lista_delta[i]}}</p>
+            <p class="card-text">Theta - {{lista_theta[i]}}</p>
+        </div>
+        <div class="card-footer">
+            <small class="text-muted">Relação das opções menores que R$ 0,15 </small>
+        </div>
+        </div>
+    </div>
+    
+
+   {% endfor %}
+    </div>
+       
+</body>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-U1DAWAznBHeqEIlVSCgzq+c9gqGAJn5c/t99JyeKa9xxaYpSvHU5awsuZVVFIhvj" crossorigin="anonymous"></script>
+</html>
