@@ -26,8 +26,8 @@ def pegar():
         # print('-----')
         df = pd.DataFrame(resultado, columns = ['index','Nome_ativo','Nome_ticker' , 'Nome_tipo', 'Nome_strike','Nome_aiotm','Nome_ultimo','Nome_delta','Nome_theta','Data_vencimento'])
         df = df.iloc[: , 1:] 
-        print(df)
-        print('-----')
+        # print(df)
+        # print('-----')
         #df_menores = df[df['ultimo']<0.15]
         # df= df.astype(str)
         # df = df.replace(',','.')
