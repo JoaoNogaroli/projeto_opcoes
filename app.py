@@ -1,5 +1,7 @@
 from flask import Flask, render_template
 import os
+
+from pandas.core.accessor import register_series_accessor
 from flask_sqlalchemy import SQLAlchemy
 import psycopg2
 import pandas as pd
@@ -25,7 +27,7 @@ def index():
     # print('-----')
     # print(type(resultado))
     # print('-----')
-    df = pd.DataFrame(resultado, columns = ['index','Nome_ativo','Nome_ticker' , 'Nome_tipo', 'Nome_strike','Nome_aiotm','Nome_ultimo','Nome_delta','Nome_theta','Data_vencimento'])
+    df = pd.DataFrame(resultado, columns = ['index','Nome_ativo','Nome_preco_ativo','Nome_ticker' , 'Nome_tipo', 'Nome_strike','Nome_aiotm','Nome_ultimo','Nome_delta','Nome_theta','Data_vencimento'])
     df = df.iloc[: , 1:] 
     # print(df)
     # print('-----')
@@ -39,12 +41,22 @@ def index():
     # print(df.head())
     # print(df.info())
     df_analise = df[df['Nome_ultimo']<0.15]
-    #print(df_analise.head())
+    print(df_analise.info())
+    #df_analise = df_analise.str.split(',') 
+    print(df_analise.info())
+    df_analise[[ 'Nome_strike','Nome_ultimo','Nome_delta','Nome_theta']] = df_analise[[ 'Nome_strike','Nome_ultimo','Nome_delta','Nome_theta']].replace('.',',')
+    print(df_analise.head())
 
+    
     #0º pegar Os nomes ATivo
     lista_nomeativo = []
     lista_nomeativo.append(df_analise['Nome_ativo'].to_list())
     lista_nomeativo = lista_nomeativo[0]
+
+    #0.1º pegar Os preços do ATivo
+    lista_preco_atual_ativo = []
+    lista_preco_atual_ativo.append(df_analise['Nome_preco_ativo'].to_list())
+    lista_preco_atual_ativo = lista_preco_atual_ativo[0]
 
     #1º pegar Os tickers
     lista_ticker = []
@@ -69,6 +81,7 @@ def index():
     lista_ultimo = []
     lista_ultimo.append(df_analise['Nome_ultimo'].to_list())
     lista_ultimo = lista_ultimo[0]
+
     # 6º pegar o Nome_delta
     lista_delta = []
     lista_delta.append(df_analise['Nome_delta'].to_list())
@@ -79,9 +92,14 @@ def index():
     lista_theta.append(df_analise['Nome_theta'].to_list())
     lista_theta = lista_theta[0]
 
+    # 9º pegar dias vencimento 
+    lista_vencimento = []
+    lista_vencimento.append(df_analise['Data_vencimento'].to_list())
+    lista_vencimento = lista_vencimento[0]
+
     
 
-    return render_template('index.html', tamanholistaticker=tamanholistaticker , lista_nomeativo= lista_nomeativo,lista_ticker = lista_ticker, lista_tipo = lista_tipo,lista_strike=lista_strike, lista_aiotm=lista_aiotm, lista_ultimo= lista_ultimo,lista_delta=lista_delta, lista_theta=lista_theta)
+    return render_template('index.html', tamanholistaticker=tamanholistaticker , lista_nomeativo= lista_nomeativo,lista_preco_atual_ativo=lista_preco_atual_ativo , lista_ticker = lista_ticker, lista_tipo = lista_tipo,lista_strike=lista_strike, lista_aiotm=lista_aiotm, lista_ultimo= lista_ultimo,lista_delta=lista_delta, lista_theta=lista_theta, lista_vencimento=lista_vencimento)
 
 if __name__ == "__main__":
-    app.run(port=port)
+    app.run(debug=True,port=port)
