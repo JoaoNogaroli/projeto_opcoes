@@ -18,15 +18,16 @@
         <div class="card h-100 shadow p-3 mb-5 ">
         <!----<img src="..." class="card-img-top" alt="..."-->
         <div class="card-body ">
-            <h2 class="h2 text-center">{{lista_nomeativo[i]}}    -   Cotação: {{lista_preco_atual_ativo[i]}}   </h2>
+            <h3 class="h3 text-center">{{lista_nomeativo[i]}}    -   Cotação: {{lista_preco_atual_ativo[i]}}   </h2>
 
             <hr>
-            <h5 class="card-title">Ticker: {{lista_ticker[i]}} -   Último Preço:  {{lista_ultimo[i]}}</h5>
-            <p class="card-text">Tipo: {{lista_tipo[i]}}</p>
-            <p class="card-text">Strike: {{lista_strike[i]}}</p>
+            <h5 class="h5 ">Ticker: {{lista_ticker[i]}} -   Último Preço:  {{lista_ultimo[i]}}</h5><br>
+            <h6 class="h5 ">Tipo: <strong>{{lista_tipo[i]}}</strong></h6>
+            <h6 class="h5 ">Strike:  <strong>{{lista_strike[i]}}</strong></h6>
+            <br><hr>
             <p class="card-text">A/I/OTM: {{lista_aiotm[i]}}</p>
-            <p class="card-text">Delta:{{lista_delta[i]}}</p>
-            <p class="card-text">Theta: {{lista_theta[i]}}</p><br>
+            <p class="card-text">Delta:  {{lista_delta[i]}}</p>
+            <p class="card-text">Theta:  {{lista_theta[i]}}</p><br>
             <p class="card-text">Vencimento: {{lista_vencimento[i]}}</p>
         </div>
         <div class="card-footer">
